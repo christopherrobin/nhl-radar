@@ -1,7 +1,16 @@
 import { createTheme } from '@mui/material/styles';
 
 const darkTheme = createTheme({
-  palette: { mode: 'dark' },
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#ffffff'
+    },
+    secondary: {
+      main: '#ffffff',
+      contrastText: '#ffffff'
+    }
+  },
   typography: {
     h1: {
       fontWeight: 900,

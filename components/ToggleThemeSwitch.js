@@ -5,7 +5,7 @@ const ToggleThemeSwitch = ({theme, toggleTheme, darkTheme}) => {
   return (
     <Tooltip title="Toggle light/dark theme">
       <FormControlLabel
-        sx={{ my: 2 }}
+        sx={{ mt: 1 }}
         control={
           <Switch
             checked={theme === darkTheme}
@@ -14,7 +14,7 @@ const ToggleThemeSwitch = ({theme, toggleTheme, darkTheme}) => {
             color="primary"
           />
         }
-        label={theme === darkTheme ? <NightsStay /> : <WbSunny /> }
+        label={theme === darkTheme ? <NightsStay /> : <WbSunny color="secondary" /> }
       />
     </Tooltip>
   );

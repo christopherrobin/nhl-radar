@@ -26,21 +26,6 @@ input:-webkit-autofill:active {
     box-shadow: 0 0 0 30px white inset !important;
 }
 
-/* Drop Down Menu */
-#options-dropdown
-  .MuiPopover-paper {
-    padding: 0;
-}
-
-.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation1.MuiMenu-paper.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation8.MuiPopover-paper.css-i1mj3j-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
-  padding: 0.5em;
-}
-
-li.MuiMenuItem-root.MuiMenuItem-gutters.MuiButtonBase-root.css-190l7zl-MuiButtonBase-root-MuiMenuItem-root:hover {
-  background-color: #292929;
-  color: #fff;
-}
-
 /* Avatar component*/
 .circle-image {
   width: 150px;
