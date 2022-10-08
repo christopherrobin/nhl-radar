@@ -1,9 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import Fade from '../components/Fade';
+import LeagueSelection from '../components/LeagueSelection';
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -11,18 +12,16 @@ export default function Home() {
         <meta name="description" content="Welcome to the NHL Dashboard!" />
       </Head>
 
-
       <Fade childComponent={
         <Grid container spacing={5}>
           <Grid item xs={12}>
-            <Typography variant="h1" component="h1" gutterBottom>Hello! &#128075;</Typography>
-            <Typography variant="p" component="p" paragraph>
-                ...world
-            </Typography>
+            <LeagueSelection />
           </Grid>
         </Grid>
       } />
 
     </>
   );
-}
+};
+
+export default Home;

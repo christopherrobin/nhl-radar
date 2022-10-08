@@ -29,8 +29,7 @@ const lightTheme = createTheme({
     },
     h2: {
       fontWeight: 900,
-      fontSize: '2em',
-      color: '#0984e3'
+      fontSize: '1.7em'
     }
   },
   components: {

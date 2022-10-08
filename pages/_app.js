@@ -2,7 +2,6 @@ import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, Container } from '@mui/material';
 import TopRibbon from '../components/TopRibbon';
-import ToggleThemeSwitch from '../components/ToggleThemeSwitch';
 
 // Themes (currently light/dark only but easily extendable)
 import lightTheme from '../themes/lightTheme';
