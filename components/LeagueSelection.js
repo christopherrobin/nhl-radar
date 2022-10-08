@@ -11,7 +11,7 @@ const getTeams = async () => {
   return data;
 };
 
-const LeagueSelection = () => {
+const LeagueSelection = ({theme}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [teams, setTeams] = useState([]);
   const [teamsError, setTeamsError] = useState(false);
@@ -35,7 +35,7 @@ const LeagueSelection = () => {
       <Switch>
         <Case condition={!isEmpty(teams)}>
           {
-            map(teams, (team) => <TeamSelectionCard key={team.id} team={team} />)
+            map(teams, (team) => <TeamSelectionCard key={team.id} team={team} theme={theme} />)
           }
         </Case>
         <Case condition={teamsError}>

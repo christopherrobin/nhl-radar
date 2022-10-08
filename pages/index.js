@@ -4,7 +4,7 @@ import { Grid } from '@mui/material';
 import Fade from '../components/Fade';
 import LeagueSelection from '../components/LeagueSelection';
 
-const Home = () => {
+const Home = ({theme}) => {
   return (
     <>
       <Head>
@@ -15,7 +15,7 @@ const Home = () => {
       <Fade childComponent={
         <Grid container spacing={5}>
           <Grid item xs={12}>
-            <LeagueSelection />
+            <LeagueSelection theme={theme} />
           </Grid>
         </Grid>
       } />
