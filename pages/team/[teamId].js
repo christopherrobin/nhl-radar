@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Grid, Typography, Card, CardContent, CardActions, Button } from '@mui/material';
+import { Grid, Typography, Card, CardContent, CardActions, Button, Alert } from '@mui/material';
 import Loading from '../../components/Loading';
 import Fade from '../../components/Fade';
 import PlayerGrid from '../../components/PlayerGrid';
@@ -48,7 +48,7 @@ const TeamPage = ({theme}) => {
         <meta name="description" content="Welcome to the NHL Dashboard!" />
       </Head>
       {
-        !isLoading && teamData ? (
+        !isLoading && teamData && (
           <Fade childComponent={
             <Grid container spacing={5} mt={1}>
               <Grid item xs={12} md={4}>
@@ -101,10 +101,10 @@ const TeamPage = ({theme}) => {
               </Grid>
             </Grid>
           } />
-        ) : (
-          <Loading />
         )
       }
+      { isLoading && <Loading /> }
+      { teamError && <Alert severity="error">There was an error loading the team data.</Alert> }
 
     </>
   );
