@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
-import Box from '@mui/material/Box';
-import { Alert } from '@mui/material';
+import { useRouter } from 'next/router';
+import { Alert, Box, Button } from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Loading from '../components/Loading';
 
@@ -11,6 +11,7 @@ const getRoster = async (teamId) => {
 };
 
 const PlayerGrid = ({teamId}) => {
+  const router = useRouter();
   const [ roster, setRoster ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(true);
   const [ error, setError ] = useState(false);
@@ -18,6 +19,8 @@ const PlayerGrid = ({teamId}) => {
   useEffect(() => {
     if (teamId) {
       setIsLoading(true);
+
+      //Get roster data, format it, and set it to state
       getRoster(teamId).then((data) => {
         if (data.teams) {
           const rosterResponse = data.teams[0].roster.roster;
@@ -41,6 +44,7 @@ const PlayerGrid = ({teamId}) => {
           setError(true);
         }
       });
+
       setIsLoading(false);
     }
   }, [teamId]);
@@ -71,6 +75,21 @@ const PlayerGrid = ({teamId}) => {
         headerName: 'Position',
         field: 'position',
         renderCell: (params) => params.row.position,
+        flex: 1
+      },
+      {
+        headerName: 'Profile Link',
+        field: 'Profile Link',
+        renderCell: (params) => {
+          return (
+            <Button
+              key={`player-link-${params.row.id}`}
+              onClick={() => router.push(`/player/${params.row.id}`)}
+            >
+              View Profile Page
+            </Button>
+          );
+        },
         flex: 1
       }
     ],
