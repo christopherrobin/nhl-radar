@@ -10,25 +10,6 @@ const getRoster = async (teamId) => {
   return data;
 };
 
-  {
-    headerName: 'Number',
-    field: 'jerseyNumber',
-    renderCell: (params) => params.row.jerseyNumber,
-    flex: 0.1
-  },
-  {
-    headerName: 'Position',
-    field: 'position.abbreviation',
-    renderCell: (params) => params.row.position.abbreviation,
-    flex: 0.1
-  },
-  {
-    headerName: 'Name',
-    field: 'person.fullName',
-    renderCell: (params) => params.row.person.fullName,
-    flex: 1
-  }
-];
 const PlayerGrid = ({teamId}) => {
   const [ roster, setRoster ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(true);
