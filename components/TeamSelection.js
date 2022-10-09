@@ -11,7 +11,7 @@ const getTeams = async () => {
   return data;
 };
 
-const LeagueSelection = ({theme}) => {
+const TeamSelection = ({theme}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [teams, setTeams] = useState([]);
   const [teamsError, setTeamsError] = useState(false);
@@ -46,14 +46,11 @@ const LeagueSelection = ({theme}) => {
         </Case>
         <Case condition={isLoading}><Loading /></Case>
         <Default>
-          <Alert severity="error">
-            <Box><strong>Error</strong></Box>
-            There was an unknown error, please try again later.
-          </Alert>
+          <Loading />
         </Default>
       </Switch>
     </>
   );
 };
 
-export default LeagueSelection;
+export default TeamSelection;

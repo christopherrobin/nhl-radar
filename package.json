@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.2",
+    "@mui/x-data-grid": "^5.17.6",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
     "next": "12.3.1",

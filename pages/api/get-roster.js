@@ -1,14 +1,9 @@
-import { isEmpty } from 'lodash';
-
 export default async function handler(req, res) {
   // Get query params from request, if any
   const { query } = req;
 
-  // Construct URL to fetch based on if query param to specify team is present
-  const urlToFetch = isEmpty(query) ? 'https://statsapi.web.nhl.com/api/v1/teams' : `https://statsapi.web.nhl.com/api/v1/teams/${query.teamId}`;
-
   try {
-    return fetch(urlToFetch, { method: 'GET' })
+    return fetch(`https://statsapi.web.nhl.com/api/v1/teams/${query.teamId}?expand=team.roster`, { method: 'GET' })
       .then(response => response.json())
       .then(result => {
         // Sometimes the NHL returns 304 Not Modified, so we need to check for that too
