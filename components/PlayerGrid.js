@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { map } from 'lodash';
-// import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import React, { useState, useEffect} from 'react';
+import Box from '@mui/material/Box';
+import { Alert } from '@mui/material';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import Loading from '../components/Loading';
 
 const getRoster = async (teamId) => {
   const response = await fetch(`/api/get-roster?teamId=${teamId}`);
@@ -9,7 +10,6 @@ const getRoster = async (teamId) => {
   return data;
 };
 
-const columns = [
   {
     headerName: 'Number',
     field: 'jerseyNumber',
@@ -29,8 +29,6 @@ const columns = [
     flex: 1
   }
 ];
-
-
 const PlayerGrid = ({teamId}) => {
   const [ roster, setRoster ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(true);
@@ -41,7 +39,22 @@ const PlayerGrid = ({teamId}) => {
       setIsLoading(true);
       getRoster(teamId).then((data) => {
         if (data.teams) {
-          setRoster(data.teams[0].roster.roster);
+          const rosterResponse = data.teams[0].roster.roster;
+
+          // Flatten the roster array for MUI search/filtering
+          const flatRows = rosterResponse.map((player) => {
+            const { person, jerseyNumber, position } = player;
+            const { id, fullName } = person;
+            return {
+              id: Number(id),
+              name: fullName,
+              jerseyNumber: jerseyNumber,
+              position: position.abbreviation,
+              positionType: position.type
+            };
+          });
+
+          setRoster(flatRows);
         } else {
           console.error('Error', data);
           setError(true);
@@ -51,30 +64,62 @@ const PlayerGrid = ({teamId}) => {
     }
   }, [teamId]);
 
-  console.log('roster', roster);
+  const gridData = {
+    columns: [
+      {
+        headerName: 'Number',
+        field: 'jerseyNumber',
+        flex: 0.3,
+        type: 'number',
+        align: 'left',
+        headerAlign: 'left'
+      },
+      {
+        headerName: 'Name',
+        field: 'name',
+        renderCell: (params) => params.row.name,
+        flex: 1
+      },
+      {
+        headerName: 'Position Type',
+        field: 'positionType',
+        renderCell: (params) => params.row.positionType,
+        flex: 1
+      },
+      {
+        headerName: 'Position',
+        field: 'position',
+        renderCell: (params) => params.row.position,
+        flex: 1
+      }
+    ],
+    rows: roster
+  };
 
   return (
     <>
       {
-        !isLoading && roster ? (
-          <DataGrid
-            autoHeight
-            getRowId={(x) => x.person.id}
-            rows={roster}
-            columns={columns}
-            sx={{ background: '#fff'}}
-          />
-        /*           map(roster, (player) => {
-            return (
-              <div key={player.person.fullName}>
-                {player.person.fullName}
-              </div>
-            );
-          }
-          ) */
-        ) : (
-          <div>Loading...</div>
+        (!isLoading && !error && gridData.rows) && (
+          <Box sx={{ height: 650, width: 1 }}>
+            <DataGrid
+              columns={gridData.columns}
+              rows={gridData.rows}
+              components={{ Toolbar: GridToolbar }}
+              componentsProps={{
+                toolbar: {
+                  showQuickFilter: true,
+                  quickFilterProps: { debounceMs: 500 }
+                }
+              }}
+            />
+          </Box>
         )
+      }
+      {
+        isLoading && <Loading />
+      }
+      {
+        !isLoading && error && <Alert severity="error">Error loading roster.</Alert>
       }
     </>
   );
