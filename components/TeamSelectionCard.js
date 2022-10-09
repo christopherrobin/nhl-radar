@@ -4,7 +4,7 @@ import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/m
 const TeamSelectionCard = ({team, theme}) => {
   const { id, name } = team;
   const imageMode = theme.palette.mode === 'dark' ? 'light' : 'dark';
-  const imageURL = `http://www-league.nhlstatic.com/nhl.com/builds/site-core/d1b262bacd4892b22a38e8708cdb10c8327ff73e_1579810224/images/logos/team/current/team-${id}-${imageMode}.svg`;
+  const imageURL = `https://www-league.nhlstatic.com/nhl.com/builds/site-core/d1b262bacd4892b22a38e8708cdb10c8327ff73e_1579810224/images/logos/team/current/team-${id}-${imageMode}.svg`;
   return (
     <>
       <Card
