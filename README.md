@@ -63,9 +63,7 @@ Example, Connor McDavid Player Details Page: `http://localhost:3000/player/84784
 
 *Mobile-friendly, 100% responsive design*
 
-![MobileView](https://user-images.githubusercontent.com/464211/194821190-9aa9180f-06f1-40bb-828f-5439867daec1.png)
-![MobileView2](https://user-images.githubusercontent.com/464211/194821644-7a9ede98-e447-4da5-b9d6-e7d2fb15d46a.png)
-
+<img src="https://user-images.githubusercontent.com/464211/194821190-9aa9180f-06f1-40bb-828f-5439867daec1.png" width="300"> <img src="https://user-images.githubusercontent.com/464211/194821644-7a9ede98-e447-4da5-b9d6-e7d2fb15d46a.png" width="300">
 
 
 ## About the Author
