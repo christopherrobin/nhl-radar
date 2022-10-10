@@ -1,6 +1,10 @@
 {
-  "name": "nhl-dashboard",
+  "name": "nhl-radar",
+  "version": "1.0.0",
   "private": false,
+  "license": "MIT",
+  "description": "NHL Radar",
+  "author": "Christopher Reynolds",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
