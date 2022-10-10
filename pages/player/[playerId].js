@@ -80,7 +80,7 @@ const PlayerPage = () => {
                       <Grid item xs={12} md={9}>
                         <Typography variant="h2" component="h2" id="player-details-name" gutterBottom>{fullName} | #{primaryNumber}</Typography>
                         <Box sx={{ mb: 2 }}>
-                          {primaryPosition.name} ({primaryPosition.abbreviation}) @ <Link underline="hover" id="player-details-team-link" href={`/team/${currentTeam.id}`}>{currentTeam.name}</Link>
+                          {primaryPosition.name} ({primaryPosition.abbreviation}) @ <Link sx={{ cursor: 'pointer' }} underline="hover" id="player-details-team-link" onClick={() => router.push(`/team/${currentTeam.id}`)}>{currentTeam.name}</Link>
                         </Box>
                       </Grid>
                       <Grid item xs={12} md={3} mb={2}>
