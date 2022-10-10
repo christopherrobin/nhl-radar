@@ -16,7 +16,7 @@ export default function TopRibbon({theme, toggleTheme, darkTheme}) {
     >
       <Toolbar variant="string" disableGutters>
         <Grid container>
-          <Grid item xs={9}>
+          <Grid item xs={10}>
             <IconButton
               color="secondary"
               size="large"
@@ -46,7 +46,7 @@ export default function TopRibbon({theme, toggleTheme, darkTheme}) {
             </IconButton>
           </Grid>
 
-          <Grid item xs={3} textAlign="center">
+          <Grid item xs={2} textAlign="right">
             <ToggleThemeSwitch
               theme={theme}
               toggleTheme={toggleTheme}

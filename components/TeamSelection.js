@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Case, Default } from 'react-if';
 import { map, isEmpty } from 'lodash';
-import { Alert, Box, Typography } from '@mui/material';
+import { Alert, Typography } from '@mui/material';
 import Loading from './Loading';
 import TeamSelectionCard from './TeamSelectionCard';
 
@@ -31,24 +30,17 @@ const TeamSelection = ({theme}) => {
   return (
     <>
       <Typography variant="h2" component="h2">Teams</Typography>
-      <Typography variant="p" component="p" mb={3}>Select a team to view their detailed rosters.</Typography>
-      <Switch>
-        <Case condition={!isEmpty(teams)}>
-          {
-            map(teams, (team) => <TeamSelectionCard key={team.id} team={team} theme={theme} />)
-          }
-        </Case>
-        <Case condition={teamsError}>
-          <Alert severity="error">
-            <Box><strong>Error</strong></Box>
-            There was an error fetching the teams, please try again later.
-          </Alert>
-        </Case>
-        <Case condition={isLoading}><Loading /></Case>
-        <Default>
-          <Loading />
-        </Default>
-      </Switch>
+      <Typography variant="p" component="p" mb={3}>Select a team to view their details.</Typography>
+
+      {isLoading && <Loading />}
+      {teamsError && (
+        <Alert severity="error">
+          There was an error loading the teams. Please try again later.
+        </Alert>
+      )}
+      {!isLoading && !teamsError && !isEmpty(teams) && (
+        map(teams, (team) => <TeamSelectionCard key={team.id} team={team} theme={theme} />)
+      )}
     </>
   );
 };

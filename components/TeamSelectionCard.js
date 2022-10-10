@@ -16,7 +16,7 @@ const TeamSelectionCard = ({team, theme}) => {
           mr: { xs: 0, md: 2 },
           width: {
             xs: '100%',
-            md: 250
+            md: 270
           }
         }}>
         <CardActionArea onClick={() => router.push(`/team/${id}`)}>
