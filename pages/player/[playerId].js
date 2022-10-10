@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Grid, Typography, Card, CardContent, CardActions, Link, Button, Alert } from '@mui/material';
+import { Grid, Typography, Card, CardContent, CardActions, Link, Box, Alert } from '@mui/material';
 import AvatarComponent from '../../components/AvatarComponent';
 import ChipComponent from '../../components/ChipComponent';
 import Loading from '../../components/Loading';
@@ -25,7 +25,6 @@ const PlayerPage = () => {
     fullName,
     height,
     weight,
-    rosterStatus,
     shootsCatches,
     rookie,
     primaryNumber,
@@ -35,7 +34,10 @@ const PlayerPage = () => {
     birthDate,
     alternateCaptain,
     captain,
-    currentTeam
+    currentTeam,
+    birthCity,
+    birthStateProvince,
+    birthCountry
   } = playerData;
 
   const imageURL = `http://nhl.bamcontent.com/images/headshots/current/168x168/${playerId}@2x.jpg`;
@@ -72,32 +74,51 @@ const PlayerPage = () => {
               <Grid item xs={12} md={8}>
                 <Card>
                   <CardContent>
+
                     <Grid container>
-                      <Grid item xs={6}>
+                      <Grid item xs={8}>
                         <Typography variant="h2" component="h2" gutterBottom>{fullName} | #{primaryNumber}</Typography>
+                        <Box sx={{ mb: 2 }}>
+                          <ChipComponent text={primaryPosition.name} /> @ <Link underline="hover" href={`/team/${currentTeam.id}`}>{currentTeam.name}</Link>
+                        </Box>
+                      </Grid>
+                      <Grid item xs={4}>
+                        hey
+                      </Grid>
 
-                        <ChipComponent text={primaryPosition.name} /> @ <Link underline="hover" href={`/team/${currentTeam.id}`}>{currentTeam.name}</Link>
-
-                        <Typography variant="body1" component="p" paragraph>
-                          {height}, {weight} lbs
-                        </Typography>
-
+                      <Grid item xs={12} md={6}>
                         <Typography variant="body2" component="p">Birth Date</Typography>
                         <Typography variant="body1" component="p" paragraph>{birthDate}</Typography>
 
-                        <Typography variant="body2" component="p">height</Typography>
-                        <Typography variant="body1" component="p" paragraph>{height}</Typography>
+                        <Typography variant="body2" component="p">Age</Typography>
+                        <Typography variant="body1" component="p" paragraph>{currentAge}</Typography>
 
-                        <Typography variant="body2" component="p">weight</Typography>
-                        <Typography variant="body1" component="p" paragraph>{weight}</Typography>
+                        <Typography variant="body2" component="p">Nationality</Typography>
+                        <Typography variant="body1" component="p" paragraph>{nationality}</Typography>
 
-                        <Typography variant="body2" component="p">rosterStatus</Typography>
-                        <Typography variant="body1" component="p" paragraph>{rosterStatus}</Typography>
+                        <Typography variant="body2" component="p">Born</Typography>
+                        <Typography variant="body1" component="p" paragraph>{birthCity}, {birthStateProvince}, {birthCountry}</Typography>
 
                       </Grid>
 
                       <Grid item xs={6}>
-                        yo
+                        <Typography variant="body2" component="p">Height</Typography>
+                        <Typography variant="body1" component="p" paragraph>{height}</Typography>
+
+                        <Typography variant="body2" component="p">Weight</Typography>
+                        <Typography variant="body1" component="p" paragraph>{weight}</Typography>
+
+                        <Typography variant="body2" component="p">Rookie</Typography>
+                        <Typography variant="body1" component="p" paragraph>{rookie ? 'yes' : 'no'}</Typography>
+
+                        <Typography variant="body2" component="p">Shoots/Catches</Typography>
+                        <Typography variant="body1" component="p" paragraph>{shootsCatches}</Typography>
+
+                        <Typography variant="body2" component="p">Captain</Typography>
+                        <Typography variant="body1" component="p" paragraph>{captain ? 'yes' : 'no'}</Typography>
+
+                        <Typography variant="body2" component="p">Alternate Captain</Typography>
+                        <Typography variant="body1" component="p" paragraph>{alternateCaptain ? 'yes' : 'no'}</Typography>
                       </Grid>
                     </Grid>
 
