@@ -9,7 +9,7 @@ const Home = ({theme}) => {
     <>
       <Head>
         <title>NHL Radar</title>
-        <meta name="description" content="Welcome to the NHL Dashboard!" />
+        <meta name="description" content="Welcome to NHL Radar!" />
       </Head>
 
       <Fade childComponent={
