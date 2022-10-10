@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import moment from 'moment';
 import { Grid, Typography, Card, CardContent, Chip, Link, Box, Alert } from '@mui/material';
 import { Close, Check, Star } from '@mui/icons-material';
 
@@ -89,7 +90,11 @@ const PlayerPage = () => {
 
                       <Grid item xs={12} md={6}>
                         <Typography variant="body2" component="p">Birth Date</Typography>
-                        <Typography variant="body1" component="p" paragraph>{birthDate}</Typography>
+                        <Typography variant="body1" component="p" paragraph>
+                          {
+                            moment(birthDate).format('MMMM Do, YYYY')
+                          }
+                        </Typography>
 
                         <Typography variant="body2" component="p">Age</Typography>
                         <Typography variant="body1" component="p" paragraph>{currentAge}</Typography>
