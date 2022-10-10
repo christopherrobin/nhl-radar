@@ -41,10 +41,12 @@ const TeamPage = ({theme}) => {
     }
   }, [teamId]);
 
+  console.log('teamData', teamData);
+
   return (
     <>
       <Head>
-        <title>NHL Radar: {name}</title>
+        <title>NHL Radar: Team View</title>
         <meta name="description" content="Welcome to the NHL Dashboard!" />
       </Head>
       {

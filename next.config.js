@@ -2,7 +2,8 @@
 const nextConfig = {
   images: {
     domains: [
-      'www-league.nhlstatic.com'
+      'www-league.nhlstatic.com',
+      'nhl.bamcontent.com'
     ]
   }
 };

@@ -4,6 +4,8 @@ import { Alert, Box, Button } from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Loading from '../components/Loading';
 
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+
 const getRoster = async (teamId) => {
   const response = await fetch(`/api/get-roster?teamId=${teamId}`);
   const data = await response.json();
@@ -85,6 +87,7 @@ const PlayerGrid = ({teamId}) => {
             <Button
               key={`player-link-${params.row.id}`}
               onClick={() => router.push(`/player/${params.row.id}`)}
+              endIcon={<NavigateNextIcon />}
             >
               View Profile Page
             </Button>
