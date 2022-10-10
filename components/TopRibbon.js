@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import ToggleThemeSwitch from '../components/ToggleThemeSwitch';
-import { AppBar, Toolbar, IconButton, MenuItem, Menu, Grid, Tooltip } from '@mui/material';
-import SettingsIcon from '@mui/icons-material/Settings';
+import { Grid, AppBar, Toolbar, IconButton } from '@mui/material';
 import RadarIcon from '@mui/icons-material/Radar';
+
+import ToggleThemeSwitch from '../components/ToggleThemeSwitch';
 
 export default function TopRibbon({theme, toggleTheme, darkTheme}) {
   const router = useRouter();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleMenuClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
-
   return (
     <AppBar
       position="static"
@@ -21,7 +16,7 @@ export default function TopRibbon({theme, toggleTheme, darkTheme}) {
     >
       <Toolbar variant="string" disableGutters>
         <Grid container>
-          <Grid item xs={8}>
+          <Grid item xs={9}>
             <IconButton
               color="secondary"
               size="large"
@@ -57,41 +52,6 @@ export default function TopRibbon({theme, toggleTheme, darkTheme}) {
               toggleTheme={toggleTheme}
               darkTheme={darkTheme}
             />
-          </Grid>
-
-          <Grid item xs={1} textAlign="right">
-            <Tooltip title="Settings">
-              <IconButton
-                color="secondary"
-                size="large"
-                aria-label="menu-cog"
-                aria-controls="menu-cog"
-                aria-haspopup="true"
-                onClick={handleMenuClick}
-              >
-                <SettingsIcon />
-              </IconButton>
-            </Tooltip>
-
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              sx={{m: 0, p: 0}}
-            >
-              <MenuItem onClick={() => router.push('/')}>Menu Item 1</MenuItem>
-              <MenuItem onClick={() => router.push('/')}>Menu Item 2</MenuItem>
-            </Menu>
           </Grid>
         </Grid>
       </Toolbar>
