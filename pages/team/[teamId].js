@@ -41,13 +41,11 @@ const TeamPage = ({theme}) => {
     }
   }, [teamId]);
 
-  console.log('teamData', teamData);
-
   return (
     <>
       <Head>
-        <title>NHL Radar: Team View</title>
-        <meta name="description" content="Welcome to the NHL Dashboard!" />
+        <title>NHL Radar: Team Details</title>
+        <meta name="description" content="NHL Radar Team Details Page" />
       </Head>
       {
         !isLoading && teamData && (
@@ -98,7 +96,7 @@ const TeamPage = ({theme}) => {
                 </Card>
               </Grid>
               <Grid item xs={12}>
-                <Typography variant="h2" component="h2" gutterBottom>Players</Typography>
+                <Typography variant="h2" component="h2" gutterBottom>{name} Players</Typography>
                 <PlayerGrid teamId={teamId} />
               </Grid>
             </Grid>

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Grid, Typography, Card, CardContent, CardActions, Link, Box, Alert } from '@mui/material';
+import { Grid, Typography, Card, CardContent, Chip, Link, Box, Alert } from '@mui/material';
+import { Close, Check, Star } from '@mui/icons-material';
+
 import AvatarComponent from '../../components/AvatarComponent';
 import ChipComponent from '../../components/ChipComponent';
 import Loading from '../../components/Loading';
 import Fade from '../../components/Fade';
+import PlayerGrid from '../../components/PlayerGrid';
 
 const getTeam = async (playerId) => {
   const response = await fetch(`/api/get-player-details?playerId=${playerId}`);
@@ -15,12 +18,11 @@ const getTeam = async (playerId) => {
 
 const PlayerPage = () => {
   const router = useRouter();
-
+  const { playerId } = router.query;
   const [ isLoading, setIsLoading ] = useState(true);
   const [ playerData, setPlayerData ] = useState(false);
   const [ playerError, setPlayerError ] = useState(false);
 
-  const { playerId } = router.query;
   const {
     fullName,
     height,
@@ -56,13 +58,11 @@ const PlayerPage = () => {
     }
   }, [playerId]);
 
-  console.log('playerData', playerData);
-
   return (
     <>
       <Head>
-        <title>NHL Radar: Player View</title>
-        <meta name="description" content="Welcome to the NHL Dashboard!" />
+        <title>NHL Radar: Player Details</title>
+        <meta name="description" content="NHL Radar Player Details Page" />
       </Head>
       {
         !isLoading && playerData && (
@@ -76,14 +76,15 @@ const PlayerPage = () => {
                   <CardContent>
 
                     <Grid container>
-                      <Grid item xs={8}>
+                      <Grid item xs={12} md={9}>
                         <Typography variant="h2" component="h2" gutterBottom>{fullName} | #{primaryNumber}</Typography>
                         <Box sx={{ mb: 2 }}>
-                          <ChipComponent text={primaryPosition.name} /> @ <Link underline="hover" href={`/team/${currentTeam.id}`}>{currentTeam.name}</Link>
+                          {primaryPosition.name} ({primaryPosition.abbreviation}) @ <Link underline="hover" href={`/team/${currentTeam.id}`}>{currentTeam.name}</Link>
                         </Box>
                       </Grid>
-                      <Grid item xs={4}>
-                        hey
+                      <Grid item xs={12} md={3} mb={2}>
+                        <Box component="span"><ChipComponent text={`${height}`} /></Box>
+                        <Box component="span" sx={{ml: 1}}><ChipComponent text={`${weight} lbs`} /></Box>
                       </Grid>
 
                       <Grid item xs={12} md={6}>
@@ -102,28 +103,43 @@ const PlayerPage = () => {
                       </Grid>
 
                       <Grid item xs={6}>
-                        <Typography variant="body2" component="p">Height</Typography>
-                        <Typography variant="body1" component="p" paragraph>{height}</Typography>
-
-                        <Typography variant="body2" component="p">Weight</Typography>
-                        <Typography variant="body1" component="p" paragraph>{weight}</Typography>
-
-                        <Typography variant="body2" component="p">Rookie</Typography>
-                        <Typography variant="body1" component="p" paragraph>{rookie ? 'yes' : 'no'}</Typography>
-
                         <Typography variant="body2" component="p">Shoots/Catches</Typography>
-                        <Typography variant="body1" component="p" paragraph>{shootsCatches}</Typography>
+                        <Typography variant="body1" component="p" paragraph>{shootsCatches === 'L' ? 'Left' : 'Right'}</Typography>
 
-                        <Typography variant="body2" component="p">Captain</Typography>
-                        <Typography variant="body1" component="p" paragraph>{captain ? 'yes' : 'no'}</Typography>
+                        <Typography variant="body1" component="div" sx={{ my: 1 }}>
+                          {
+                            rookie ?
+                              <Chip label="Rookie Year" color="success" icon={<Check />} sx={{ fontWeight: 900 }} />
+                              :
+                              <Chip label="Not a Rookie" color="error" variant="outlined" icon={<Close />} sx={{ fontWeight: 900 }} />
+                          }
+                        </Typography>
 
-                        <Typography variant="body2" component="p">Alternate Captain</Typography>
-                        <Typography variant="body1" component="p" paragraph>{alternateCaptain ? 'yes' : 'no'}</Typography>
+                        <Typography variant="body1" component="div" sx={{ my: 1 }}>
+                          {
+                            captain ?
+                              <Chip label="Captain" color="success" icon={<Star />} sx={{ fontWeight: 900 }} />
+                              :
+                              <Chip label="Not Captain" color="error" variant="outlined" icon={<Close />} sx={{ fontWeight: 900 }} />
+                          }
+                        </Typography>
+                        <Typography variant="body1" component="div">
+                          {
+                            alternateCaptain ?
+                              <Chip label="Alternate Captain" color="success" icon={<Check />} sx={{ fontWeight: 900 }} />
+                              :
+                              <Chip label="Not Alternate Captain" variant="outlined" color="error" icon={<Close />} sx={{ fontWeight: 900 }} />
+                          }
+                        </Typography>
                       </Grid>
                     </Grid>
 
                   </CardContent>
                 </Card>
+              </Grid>
+              <Grid item xs={12} mt={3}>
+                <Typography variant="h2" component="h2" gutterBottom>Other {currentTeam.name} Players</Typography>
+                <PlayerGrid teamId={currentTeam.id} />
               </Grid>
             </Grid>
           } />

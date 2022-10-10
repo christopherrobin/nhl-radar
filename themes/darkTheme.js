@@ -6,6 +6,10 @@ const darkTheme = createTheme({
     secondary: {
       main: '#ffffff',
       contrastText: '#ffffff'
+    },
+    success: {
+      main: '#39AC73',
+      contrastText: '#fff'
     }
   },
   typography: {

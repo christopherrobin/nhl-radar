@@ -18,7 +18,8 @@ const lightTheme = createTheme({
       contrastText: '#292929'
     },
     success: {
-      main: '#39AC73'
+      main: '#39AC73',
+      contrastText: '#fff'
     }
   },
   typography: {

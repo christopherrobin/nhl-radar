@@ -65,19 +65,19 @@ const PlayerGrid = ({teamId}) => {
         headerName: 'Name',
         field: 'name',
         renderCell: (params) => params.row.name,
-        flex: 1
+        flex: 0.5
       },
       {
         headerName: 'Position Type',
         field: 'positionType',
         renderCell: (params) => params.row.positionType,
-        flex: 1
+        flex: 0.5
       },
       {
         headerName: 'Position',
         field: 'position',
         renderCell: (params) => params.row.position,
-        flex: 1
+        flex: 0.3
       },
       {
         headerName: 'Profile Link',
@@ -89,7 +89,7 @@ const PlayerGrid = ({teamId}) => {
               onClick={() => router.push(`/player/${params.row.id}`)}
               endIcon={<NavigateNextIcon />}
             >
-              View Profile Page
+              View Profile
             </Button>
           );
         },
@@ -103,8 +103,9 @@ const PlayerGrid = ({teamId}) => {
     <>
       {
         (!isLoading && !error && gridData.rows) && (
-          <Box sx={{ height: 650, width: 1 }}>
+          <Box sx={{ height: 650, width: 1, maxWidth: '100%' }}>
             <DataGrid
+              sx={{ width: '100%' }}
               columns={gridData.columns}
               rows={gridData.rows}
               components={{ Toolbar: GridToolbar }}
