@@ -6,6 +6,8 @@ const ToggleThemeSwitch = ({theme, toggleTheme, darkTheme}) => {
     <Tooltip title="Toggle light/dark theme">
       <FormControlLabel
         sx={{ mt: 1 }}
+        aria-label="toggle theme"
+        id="toggle-theme"
         control={
           <Switch
             checked={theme === darkTheme}

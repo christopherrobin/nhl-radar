@@ -18,6 +18,7 @@ export default function TopRibbon({theme, toggleTheme, darkTheme}) {
         <Grid container>
           <Grid item xs={10}>
             <IconButton
+              id="radar-header"
               color="secondary"
               size="large"
               aria-label="radar-icon"

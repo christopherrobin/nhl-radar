@@ -85,6 +85,7 @@ const PlayerGrid = ({teamId}) => {
         renderCell: (params) => {
           return (
             <Button
+              className="profile-link"
               key={`player-link-${params.row.id}`}
               onClick={() => router.push(`/player/${params.row.id}`)}
               endIcon={<NavigateNextIcon />}

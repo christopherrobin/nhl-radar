@@ -10,6 +10,7 @@ const TeamSelectionCard = ({team, theme}) => {
   return (
     <>
       <Card
+        className="team-selection-card"
         sx={{
           display: 'inline-block',
           p: 0,

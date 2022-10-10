@@ -78,9 +78,9 @@ const PlayerPage = () => {
 
                     <Grid container>
                       <Grid item xs={12} md={9}>
-                        <Typography variant="h2" component="h2" gutterBottom>{fullName} | #{primaryNumber}</Typography>
+                        <Typography variant="h2" component="h2" id="player-details-name" gutterBottom>{fullName} | #{primaryNumber}</Typography>
                         <Box sx={{ mb: 2 }}>
-                          {primaryPosition.name} ({primaryPosition.abbreviation}) @ <Link underline="hover" href={`/team/${currentTeam.id}`}>{currentTeam.name}</Link>
+                          {primaryPosition.name} ({primaryPosition.abbreviation}) @ <Link underline="hover" id="player-details-team-link" href={`/team/${currentTeam.id}`}>{currentTeam.name}</Link>
                         </Box>
                       </Grid>
                       <Grid item xs={12} md={3} mb={2}>
@@ -123,17 +123,17 @@ const PlayerPage = () => {
                         <Typography variant="body1" component="div" sx={{ my: 1 }}>
                           {
                             captain ?
-                              <Chip label="Captain" color="success" icon={<Star />} sx={{ fontWeight: 900 }} />
+                              <Chip className="player-details-captain" label="Captain" color="success" icon={<Star />} sx={{ fontWeight: 900 }} />
                               :
-                              <Chip label="Not Captain" color="error" variant="outlined" icon={<Close />} sx={{ fontWeight: 900 }} />
+                              <Chip className="player-details-captain" label="Not Captain" color="error" variant="outlined" icon={<Close />} sx={{ fontWeight: 900 }} />
                           }
                         </Typography>
                         <Typography variant="body1" component="div">
                           {
                             alternateCaptain ?
-                              <Chip label="Alternate Captain" color="success" icon={<Check />} sx={{ fontWeight: 900 }} />
+                              <Chip className="player-details-alt-captain" label="Alternate Captain" color="success" icon={<Check />} sx={{ fontWeight: 900 }} />
                               :
-                              <Chip label="Not Alternate Captain" variant="outlined" color="error" icon={<Close />} sx={{ fontWeight: 900 }} />
+                              <Chip className="player-details-alt-captain" label="Not Alternate Captain" variant="outlined" color="error" icon={<Close />} sx={{ fontWeight: 900 }} />
                           }
                         </Typography>
                       </Grid>

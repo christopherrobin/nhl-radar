@@ -67,7 +67,7 @@ const TeamPage = ({theme}) => {
               <Grid item xs={12} md={8}>
                 <Card>
                   <CardContent>
-                    <Typography variant="h2" component="h2">{name}</Typography>
+                    <Typography variant="h2" component="h2" id="team-name">{name}</Typography>
                     <Typography variant="body1" component="p" mb={2}>Est. {firstYearOfPlay}</Typography>
 
                     <Typography variant="body2" component="p">City</Typography>

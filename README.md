@@ -10,6 +10,7 @@ NHL Radar is a Next.js app initially created using `create-next-app`. It include
 * [Node.js 12.22.0](https://nodejs.org/en/)  or later
 
 ## Getting Started
+#### Initial Setup
 Clone Repository: `git clone https://github.com/christopherrobin/nhl-radar.git`
 
 Open cloned folder: `cd nhl-radar`
@@ -17,6 +18,13 @@ Open cloned folder: `cd nhl-radar`
 Install: `yarn && yarn run build`
 
 Run application: `yarn run dev`
+
+#### Testing
+Playwright uses the development server to run tests. To start the server, run `yarn run build && yarn run dev`
+
+Then, in a separate terminal window, run the e2e tests: `yarn run test:e2e`
+
+TODO: _Add more tests, unit tests with Jest would be nice._
 
 ## Usage Details
 
@@ -26,7 +34,11 @@ Landing page, allows users to select a team to view: `<baseURL>/`
 
 Team Details Page: `<baseURL>/team/<teamId>`
 
+Example, Chicago Blackhawks Team Page: `http://localhost:3000/team/16`
+
 Player Details Page: `<baseURL>/player/<playerId>`
+
+Example, Connor McDavid Player Details Page: `http://localhost:3000/player/8478402`
 
 ## Features
 *Team Selection Page*
